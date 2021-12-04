@@ -102,7 +102,7 @@ export default NextAuth({
         token.accessToken = account.access_token
         let local_user_data = profile
         local_user_data.accessToken = token.accessToken
-        const user_record = await fetch( process.env.BACK_USER_BASE_URL + '/user/register', {
+        const user_record = await fetch( process.env.BACK_USER_BASE_URL + '/register', {
           method: 'POST',
           mode: 'cors',
           headers: {
