@@ -91,11 +91,11 @@ export default function Header() {
               <a>API</a>
             </Link>
           </li>
-          <li className={styles.navItem}>
-            <Link href="/middleware-protected">
-              <a>Middleware protected</a>
-            </Link>
-          </li>
+          {/*<li className={styles.navItem}>*/}
+          {/*  <Link href="/middleware-protected">*/}
+          {/*    <a>Middleware protected</a>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           <li className={styles.navItem}>
             <Link href="/me">
               <a>My Profile</a>
@@ -104,6 +104,11 @@ export default function Header() {
           <li className={styles.navItem}>
             <Link href="/forums">
               <a>Forums</a>
+            </Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/games">
+              <a>Games</a>
             </Link>
           </li>
         </ul>

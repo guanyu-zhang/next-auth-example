@@ -5,7 +5,7 @@ export default async (req, res) => {
     const session = await getSession({ req })
 
     if (session) {
-        const myInfo = await fetch(process.env.BACK_USER_BASE_URL + '/users/' + session.localID, {
+        const myInfo = await fetch(process.env.BACK_BASE_URL + '/users/' + session.localID, {
             method: 'GET',
             mode: 'cors',
             headers: {

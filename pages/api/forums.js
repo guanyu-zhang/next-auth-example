@@ -8,7 +8,7 @@ export default async (req, res) => {
     switch (method) {
         case 'GET':
             // Get data from your database
-            const forums = await fetch(`${process.env.BACK_FORUM_BASE_URL}/forums?offset=${req.query.offset}`, {
+            const forums = await fetch(`${process.env.BACK_BASE_URL}/forums?offset=${req.query.offset}`, {
                 method: 'GET',
                 mode: 'cors',
                 headers: {
