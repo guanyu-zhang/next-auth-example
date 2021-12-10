@@ -112,7 +112,7 @@ export default function Page () {
                         <tr>
                             <td>Login with Steam</td>
                             <td>
-                                <Link href={`http://192.168.0.198:5000/steampowered/status`}>
+                                <Link href={`http://52.15.243.33:5000/steampowered/status`}>
                                     <a>Steam</a>
                                 </Link>
                             </td>
