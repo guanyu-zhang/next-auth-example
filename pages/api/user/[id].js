@@ -3,7 +3,7 @@ export default async  (req, res) => {
         query: { id },
         method,
     } = req
-    console.log(JSON.stringify(req.query))
+    // console.log(JSON.stringify(req.query))
     switch (method) {
         case 'GET':
             // Get data from your database
@@ -16,6 +16,7 @@ export default async  (req, res) => {
             }).then(response => {
                 return response.json();
             })
+            console.log(JSON.stringify(forum))
             res.status(200).send(forum)
             break
         case 'PUT':

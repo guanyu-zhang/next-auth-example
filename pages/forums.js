@@ -36,15 +36,15 @@ function Page ({ offset }) {
             <table>
                 {data.map(({f_id,title,create_date,userID,content,create_time}) => (
                         <tr key={f_id}>
-                            <td>{f_id}</td>
+                            {/*<td>{f_id}</td>*/}
                             <td>
                                 <Link href={`/forum/${encodeURIComponent(f_id)}`}>
                                     <a>{title}</a>
                                 </Link>
                             </td>
-                            <td>{create_date}</td>
-                            <td>{userID}</td>
-                            <td>{content}</td>
+                            {/*<td>{create_date}</td>*/}
+                            <td>Author: {userID}</td>
+                            {/*<td>{content}</td>*/}
                             <td>{create_time}</td>
                         </tr>
                     )
@@ -52,6 +52,9 @@ function Page ({ offset }) {
 
                 }
             </table>
+            <Link href={'/post'}>
+                New Post
+            </Link>
         </>
     )
 

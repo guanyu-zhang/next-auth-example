@@ -16,7 +16,10 @@ export default async (req, res) => {
                 },
             }).then(response => {
                 return response.json();
-            })
+            }).then(res => {
+                // console.log(JSON.stringify(res.data))
+                return res.data
+            });
             res.status(200).send(forums)
             break
         case 'PUT':

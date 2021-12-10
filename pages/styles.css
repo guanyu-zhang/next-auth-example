@@ -28,3 +28,19 @@ iframe {
   border-radius: .5rem;
   filter: invert(1);
 }
+
+.form-control-content {
+  height: 200px;
+  width: 400px;
+  line-height: 20px;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.form-control-title {
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}

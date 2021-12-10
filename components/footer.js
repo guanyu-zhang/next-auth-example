@@ -8,13 +8,14 @@ export default function Footer() {
       <hr />
       <ul className={styles.navItems}>
         <li className={styles.navItem}>
-          <Link href="/policy">
-            <a>Policy</a>
-          </Link>
+          {/*<Link href="/policy">*/}
+          {/*  <a>Policy</a>*/}
+          {/*</Link>*/}
+            <i> TeamNameNotFound </i>
         </li>
-        <li className={styles.navItem}>
-          <em>next-auth@{packageJSON.dependencies["next-auth"]}</em>
-        </li>
+        {/*<li className={styles.navItem}>*/}
+        {/*  <em>next-auth@{packageJSON.dependencies["next-auth"]}</em>*/}
+        {/*</li>*/}
       </ul>
     </footer>
   )

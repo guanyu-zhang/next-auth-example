@@ -92,6 +92,21 @@ export default NextAuth({
     // async jwt({ token, user, account, profile, isNewUser }) { return token }
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
+      // console.log(JSON.stringify(token))
+      if(!session.steamID && session.localID){
+        const user_record = await fetch( process.env.BACK_BASE_URL + `/users/${session.localID}`, {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'content_type': 'application/json',
+          },
+        }).then(response => response.json())
+        console.log(JSON.stringify(user_record))
+        if(user_record[0].steamID){
+          session.steamID = user_record[0].steamID
+          token.steamID = user_record[0].steamID
+        }
+      }
       session.accessToken = token.accessToken
       session.localID = token.localID
       return session
@@ -111,6 +126,8 @@ export default NextAuth({
           body: JSON.stringify(local_user_data)
         }).then(response => response.json())
         token.localID = JSON.stringify(user_record[0].ID)
+        if(user_record[0].steamID){token.steamID=user_record[0].steamID}
+        console.log("jwt " + JSON.stringify(token))
       }
       return token
     }

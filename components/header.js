@@ -71,26 +71,26 @@ export default function Header() {
               <a>Home</a>
             </Link>
           </li>
-          <li className={styles.navItem}>
-            <Link href="/client">
-              <a>Client</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/server">
-              <a>Server</a>
-            </Link>
-          </li>
+          {/*<li className={styles.navItem}>*/}
+          {/*  <Link href="/client">*/}
+          {/*    <a>Client</a>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
+          {/*<li className={styles.navItem}>*/}
+          {/*  <Link href="/server">*/}
+          {/*    <a>Server</a>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           {/*<li className={styles.navItem}>*/}
           {/*  <Link href="/protected">*/}
           {/*    <a>Protected</a>*/}
           {/*  </Link>*/}
           {/*</li>*/}
-          <li className={styles.navItem}>
-            <Link href="/api-example">
-              <a>API</a>
-            </Link>
-          </li>
+          {/*<li className={styles.navItem}>*/}
+          {/*  <Link href="/api-example">*/}
+          {/*    <a>API</a>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           {/*<li className={styles.navItem}>*/}
           {/*  <Link href="/middleware-protected">*/}
           {/*    <a>Middleware protected</a>*/}
