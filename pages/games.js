@@ -15,9 +15,9 @@ function App () {
             <h1>Games</h1>
             <Page offset={pageOffset}/>
             <br/>
-            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset - 10 > 0 ? pageOffset - 10 : 0)}>Previous</button>
+            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset - 15 > 0 ? pageOffset - 15 : 0)}>Previous</button>
             &emsp;
-            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset + 10)}>Next</button>
+            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset + 15)}>Next</button>
         </Layout>
     )
 }
