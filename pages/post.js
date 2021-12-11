@@ -2,9 +2,11 @@ import React, {useState} from "react";
 import Layout from "../components/layout";
 import AccessDenied from "../components/access-denied";
 import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
 
 export default function Form() {
     const { data: session, status } = useSession()
+    const router = useRouter()
     let userid = null
     if(status === "authenticated"){
         userid = session.localID
@@ -44,7 +46,7 @@ export default function Form() {
         // if(!res) return <>Loading</>
         // const
         alert("You just posted")
-
+        router.push("/forums")
     }
 
     return (

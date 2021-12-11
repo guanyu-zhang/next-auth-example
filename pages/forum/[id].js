@@ -30,6 +30,7 @@ export default function Forum() {
         })
         alert("delete success")
         // need a redirect but have no idea how to implement
+        router.push('/forums')
     }
     if(status === "authenticated" && parseInt(session.localID) === parseInt(author)) {
         return (
