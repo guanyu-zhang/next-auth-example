@@ -23,23 +23,25 @@ export default function Game() {
     // const showCont = JSON.stringify({Game_name: data[0].Game_name, insertedAtTimestamp: data[0].insertedAtTimestamp})
     return (
         <Layout>
-            <h1>{data[0].Game_name}</h1>
-            <div>
-                <u>gid: {data[0].id}</u>
-            </div>
-            <div>
-                <u>Developer(s): {data[0].DEVELOPER.toString()}</u>
-            </div>
-            <div>
+            <h2 className="py-2">{data[0].Game_name}</h2>
+
+            <div className="py-3">
                 <Link href={data[0].URL}>
                     <Image
                         loader={myLoader}
                         src={data[0].Image}
                         alt='Picture of the game'
-                        width={200}
-                        height={80}
+                        width={400}
+                        height={300}
+                        className="figure"
                     />
                 </Link>
+            </div>
+            <div>
+                <u>Game ID: {data[0].id}</u>
+            </div>
+            <div>
+                <u>Developer(s): {data[0].DEVELOPER.toString().slice(2, -2)}</u>
             </div>
         </Layout>
     )

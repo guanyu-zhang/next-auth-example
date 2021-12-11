@@ -3,9 +3,33 @@ import Layout from "../components/layout";
 import AccessDenied from "../components/access-denied";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
+import useSWR from "swr";
+import Link from "next/link";
 
+function Selector() {
+    const handleParam = () => (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setQuery((prevState) => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+    const { data, error } = useSWR(`/api/games?offset=0`, fetcher);
+    if (error) return <option value="" selected="selected" onChange={handleParam}>Nothing</option>
+    if (!data) return <option value="" selected="selected" onChange={handleParam}>Nothing</option>
+    return (<>
+            {data.map(({Game_name, DEVELOPER, id}) => (
+                <option value={id}  onChange={handleParam}>{Game_name}</option>
+            ))}
+        </>)
+}
+
+
+const fetcher = (url) => fetch(url).then((res) => res.json())
 export default function Form() {
     const { data: session, status } = useSession()
+
     const router = useRouter()
     let userid = null
     if(status === "authenticated"){
@@ -24,6 +48,7 @@ export default function Form() {
             [name]: value
         }));
     };
+
     const post = async event => {
         event.preventDefault()
         const postContent = {};
@@ -51,34 +76,35 @@ export default function Form() {
 
     return (
         <Layout>
-            <h1>Write A POST</h1>
+            <h1 className="py-1">Write A POST</h1>
                 <form onSubmit={post}>
                     <div>
-                    <label htmlFor="postTitle">Title</label>
+                    <span htmlFor="postTitle" className="font-weight-bold">Title:&nbsp;</span>
                     <input type="text"
                            name="title"
                            required
                            placeholder="Title"
-                           className="form-control-title"
+                           className="form-control-sm"
                            value={query.title}
                            onChange={handleParam()}/>
                     </div>
+                    <br/>
+                    <span htmlFor="postContent" className="font-weight-bold">Game:&nbsp;</span>
                     <select name="select-game" id="select-game">
-                        <option value="" selected="selected" onChange={handleParam}>Select subject</option>
-                        <option value="" selected="selected">Select subject</option>
+                        <Selector></Selector>
                     </select>
                     <div>
-                    <div><label htmlFor="postContent">Content</label></div>
-                    <textarea type="textarea"
-                              name="content"
-                              required
-                              placeholder="Content"
-                              className="form-control-content"
-                              value={query.content}
-                              onChange={handleParam()}
-                              height={200}
-                    />
-                        <div><button type="submit">post</button></div>
+                        <br/>
+                        <textarea type="textarea"
+                                  name="content"
+                                  required
+                                  placeholder="Content"
+                                  className="form-control-content"
+                                  value={query.content}
+                                  onChange={handleParam()}
+                                  height={200}
+                        />
+                            <div><button type="submit"  className="btn btn-primary">post</button></div>
                     </div>
                 </form>
         </Layout>

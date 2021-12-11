@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/react"
 import styles from "./header.module.css"
+import { Navbar } from "react-bootstrap";
 
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
@@ -64,55 +65,37 @@ export default function Header() {
           )}
         </p>
       </div>
-      <nav>
-        <ul className={styles.navItems}>
-          <li className={styles.navItem}>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          {/*<li className={styles.navItem}>*/}
-          {/*  <Link href="/client">*/}
-          {/*    <a>Client</a>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
-          {/*<li className={styles.navItem}>*/}
-          {/*  <Link href="/server">*/}
-          {/*    <a>Server</a>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
-          {/*<li className={styles.navItem}>*/}
-          {/*  <Link href="/protected">*/}
-          {/*    <a>Protected</a>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
-          {/*<li className={styles.navItem}>*/}
-          {/*  <Link href="/api-example">*/}
-          {/*    <a>API</a>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
-          {/*<li className={styles.navItem}>*/}
-          {/*  <Link href="/middleware-protected">*/}
-          {/*    <a>Middleware protected</a>*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
-          <li className={styles.navItem}>
-            <Link href="/me">
-              <a>My Profile</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/forums">
-              <a>Forums</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/games">
-              <a>Games</a>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+
+      <Navbar className="navbar navbar-expand-lg navbar-dark bg-dark" id="navbarsExample07XU">
+        <div className="container-xxl">
+          <Link href="/">
+            <a className="navbar-brand">Game Forum</a>
+          </Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07XU" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse">
+          <ul className={styles.navItems}  className="navbar-nav mr-auto">
+
+            <li className={styles.navItem} className="nav-item">
+              <Link href="/me">
+                <a className="nav-link">My Profile</a>
+              </Link>
+            </li>
+            <li className={styles.navItem} className="nav-item">
+              <Link href="/forums">
+                <a className="nav-link">Forums</a>
+              </Link>
+            </li>
+            <li className={styles.navItem} className="nav-item">
+              <Link href="/games">
+                <a className="nav-link">Games</a>
+              </Link>
+            </li>
+          </ul>
+          </div>
+        </div>
+      </Navbar>
     </header>
   )
 }

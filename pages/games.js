@@ -14,8 +14,10 @@ function App () {
         <Layout>
             <h1>Games</h1>
             <Page offset={pageOffset}/>
-            <button onClick={() => setPageOffset(pageOffset - 20 > 0 ? pageOffset - 20 : 0)}>Previous</button>
-            <button onClick={() => setPageOffset(pageOffset + 20)}>Next</button>
+            <br/>
+            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset - 10 > 0 ? pageOffset - 10 : 0)}>Previous</button>
+            &emsp;
+            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset + 10)}>Next</button>
         </Layout>
     )
 }
@@ -33,21 +35,30 @@ function Page ({ offset }) {
     // const email = forum1.email;
     return(
         <>
-            <table>
+            <table className="table text-center border-top table-striped">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">Game ID</th>
+                        <th scope="col">Game Name</th>
+                        <th scope="col">Developer</th>
+                    </tr>
+                </thead>
+                <tbody className="table-striped">
                 {data.map(({Game_name, DEVELOPER, id}) => (
-                        <tr key={id}>
-                            <td>GameID: {id}</td>
+                        <tr key={id} >
+                            <td>{id}</td>
                             <td>
                                 <Link href={`/game/${encodeURIComponent(id)}`}>
-                                    <a>Game_name: {Game_name}</a>
+                                    <a className="text-muted">{Game_name}</a>
                                 </Link>
                             </td>
-                            <td>DEVELOPER: {DEVELOPER}</td>
+                            <td>{DEVELOPER.slice(2, -2)}</td>
                         </tr>
                     )
                 )
 
                 }
+                </tbody>
             </table>
         </>
     )
