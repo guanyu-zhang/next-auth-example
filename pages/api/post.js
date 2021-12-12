@@ -1,7 +1,7 @@
 // This is an example of to protect an API route
 
 export default async (req, res) => {
-    console.log(JSON.stringify(req.body.data))
+    // console.log(JSON.stringify(req.body.data))
     const postResponse = await fetch(process.env.BACK_BASE_URL+'/forums', {
         body: JSON.stringify(req.body.data),
         method: 'POST',
@@ -10,7 +10,7 @@ export default async (req, res) => {
             'content_type': 'application/json',
         },
     }).then(res => res.json())
-    console.log(JSON.stringify(postResponse))
+    // console.log(JSON.stringify(postResponse))
 
     res.json(
         // {

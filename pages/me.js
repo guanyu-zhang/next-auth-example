@@ -110,7 +110,7 @@ export default function Page () {
                             <td>{googleID}</td>
                         </tr>
                         <tr>
-                            <td>Login with Steam</td>
+                            <td>Login with Steam:</td>
                             <td>
                                 <Link href={`http://52.15.243.33:5000/steampowered/status`}>
                                     <a>Steam</a>

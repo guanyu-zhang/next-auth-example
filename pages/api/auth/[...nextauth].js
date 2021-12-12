@@ -101,7 +101,7 @@ export default NextAuth({
             'content_type': 'application/json',
           },
         }).then(response => response.json())
-        console.log(JSON.stringify(user_record))
+        // console.log(JSON.stringify(user_record))
         if(user_record[0].steamID){
           session.steamID = user_record[0].steamID
           token.steamID = user_record[0].steamID
@@ -127,7 +127,7 @@ export default NextAuth({
         }).then(response => response.json())
         token.localID = JSON.stringify(user_record[0].ID)
         if(user_record[0].steamID){token.steamID=user_record[0].steamID}
-        console.log("jwt " + JSON.stringify(token))
+        // console.log("jwt " + JSON.stringify(token))
       }
       return token
     }

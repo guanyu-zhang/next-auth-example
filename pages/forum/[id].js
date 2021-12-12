@@ -4,9 +4,16 @@ import Layout from "../../components/layout";
 import Link from 'next/link'
 import * as React from "react";
 import { useSession } from 'next-auth/react'
+import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
+function User ({id}) {
+    const { data, error } = useSWR(`/api/user/${id}`, fetcher);
+    if (error) return id
+    if (!data) return "Loading..."
+    return data[0].nameLast + " " + data[0].nameFirst
+}
 export default function Forum() {
     const { data: session, status } = useSession()
     const router = useRouter()
@@ -32,6 +39,7 @@ export default function Forum() {
         // need a redirect but have no idea how to implement
         router.push('/forums')
     }
+
     if(status === "authenticated" && parseInt(session.localID) === parseInt(author)) {
         return (
             <Layout>
@@ -40,13 +48,13 @@ export default function Forum() {
                     {/*<Link href={`/user/${encodeURIComponent(author)}`}>*/}
                     {/*    <a>Author: {author}</a>*/}
                     {/*</Link>*/}
-                    <i>Author: <u>user {author}</u></i>
+                    <i>Author: <u><User id={author}></User></u></i>
                 </h4>
                 <>
                     {showCont}
                 </>
                 <div>
-                    <button onClick={handleClick}>Delete</button>
+                    <button className="btn btn-primary" onClick={handleClick}>Delete</button>
                 </div>
             </Layout>
         )
@@ -59,7 +67,7 @@ export default function Forum() {
                     {/*<Link href={`/user/${encodeURIComponent(author)}`}>*/}
                     {/*    <a>Author: {author}</a>*/}
                     {/*</Link>*/}
-                    <i>Author: <u>user {author}</u></i>
+                    <i>Author: <u><User id={author}></User></u></i>
                 </h4>
                 <>
                     {showCont}
@@ -67,4 +75,5 @@ export default function Forum() {
             </Layout>
         )
     }
+
 }

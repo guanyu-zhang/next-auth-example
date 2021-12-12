@@ -14,12 +14,24 @@ function App () {
         <Layout>
             <h1>Forums</h1>
             <Page offset={pageOffset}/>
-            <button onClick={() => setPageOffset(pageOffset - 10 > 0 ? pageOffset - 10 : 0)}>Previous</button>
-            <button onClick={() => setPageOffset(pageOffset + 10)}>Next</button>
+            <br/>
+            <Link  href={'/post'} >
+                <a className=" font-weight-bold">New Post</a>
+            </Link>
+            &emsp;&emsp;
+            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset - 10 > 0 ? pageOffset - 10 : 0)}>Previous</button>
+            &emsp;
+            <button className="btn btn-primary" onClick={() => setPageOffset(pageOffset + 10)}>Next</button>
         </Layout>
         )
 }
 
+function User ({id}) {
+    const { data, error } = useSWR(`/api/user/${id}`, fetcher);
+    if (error) return id
+    if (!data) return "Loading..."
+    return data[0].nameLast + " " + data[0].nameFirst
+}
 
 function Page ({ offset }) {
     const { data, error } = useSWR(`/api/forums?offset=${offset}`, fetcher);
@@ -33,17 +45,25 @@ function Page ({ offset }) {
     // const email = forum1.email;
     return(
         <>
-            <table>
+            <table className="table border-top text-center table-striped">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Create Time</th>
+                    </tr>
+                </thead>
+                <tbody className="table-striped">
                 {data.map(({f_id,title,create_date,userID,content,create_time}) => (
                         <tr key={f_id}>
-                            {/*<td>{f_id}</td>*/}
                             <td>
                                 <Link href={`/forum/${encodeURIComponent(f_id)}`}>
-                                    <a>{title}</a>
+                                    <a className="text-muted">{title}</a>
                                 </Link>
                             </td>
                             {/*<td>{create_date}</td>*/}
-                            <td>Author: {userID}</td>
+                            {/*<td>{userID}</td>*/}
+                            <td><User id={userID}></User></td>
                             {/*<td>{content}</td>*/}
                             <td>{create_time}</td>
                         </tr>
@@ -51,10 +71,9 @@ function Page ({ offset }) {
                 )
 
                 }
+                </tbody>
             </table>
-            <Link href={'/post'}>
-                New Post
-            </Link>
+
         </>
     )
 
