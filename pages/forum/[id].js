@@ -49,7 +49,9 @@ export default function Forum() {
                     {/*<Link href={`/user/${encodeURIComponent(author)}`}>*/}
                     {/*    <a>Author: {author}</a>*/}
                     {/*</Link>*/}
-                    <i>Author: </i>
+                    <i>Author:
+                        <u><User id={author}></User></u>
+                    </i>
                 </h4>
                 <>
                     {showCont}
