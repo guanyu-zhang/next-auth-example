@@ -12,7 +12,8 @@ function User ({id}) {
     const { data, error } = useSWR(`/api/user/${id}`, fetcher);
     if (error) return id
     if (!data) return "Loading..."
-    return data[0].nameLast + " " + data[0].nameFirst
+    if(data[0]) {return data[0].nameLast + " " + data[0].nameFirst}
+    else{return "Anonymous"}
 }
 export default function Forum() {
     const { data: session, status } = useSession()
@@ -48,7 +49,7 @@ export default function Forum() {
                     {/*<Link href={`/user/${encodeURIComponent(author)}`}>*/}
                     {/*    <a>Author: {author}</a>*/}
                     {/*</Link>*/}
-                    <i>Author: <u><User id={author}></User></u></i>
+                    <i>Author: </i>
                 </h4>
                 <>
                     {showCont}
@@ -67,7 +68,9 @@ export default function Forum() {
                     {/*<Link href={`/user/${encodeURIComponent(author)}`}>*/}
                     {/*    <a>Author: {author}</a>*/}
                     {/*</Link>*/}
-                    <i>Author: <u><User id={author}></User></u></i>
+                    <i>Author:
+                        <u><User id={author}></User></u>
+                    </i>
                 </h4>
                 <>
                     {showCont}

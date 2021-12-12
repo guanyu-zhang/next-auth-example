@@ -30,7 +30,8 @@ function User ({id}) {
     const { data, error } = useSWR(`/api/user/${id}`, fetcher);
     if (error) return id
     if (!data) return "Loading..."
-    return data[0].nameLast + " " + data[0].nameFirst
+    if(data[0]) {return data[0].nameLast + " " + data[0].nameFirst}
+    else{return "Anonymous"}
 }
 
 function Game ({g_id}) {
@@ -78,7 +79,9 @@ function Page ({ offset }) {
                             </td>
                             {/*<td>{create_date}</td>*/}
                             {/*<td>{userID}</td>*/}
-                            <td><User id={userID}></User></td>
+                            <td>{
+                                <User id={userID}></User>
+                            }</td>
                             {/*<td>{content}</td>*/}
                             <td>{create_time}</td>
                         </tr>
