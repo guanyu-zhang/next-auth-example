@@ -33,6 +33,13 @@ function User ({id}) {
     return data[0].nameLast + " " + data[0].nameFirst
 }
 
+function Game ({g_id}) {
+    const {data, error} = useSWR(`/api/game/${g_id}`, fetcher);
+    if (error) return g_id
+    if(!data) return "Loading"
+    return data[0].Game_name
+}
+
 function Page ({ offset }) {
     const { data, error } = useSWR(`/api/forums?offset=${offset}`, fetcher);
 
@@ -49,16 +56,24 @@ function Page ({ offset }) {
                 <thead className="thead-dark">
                     <tr>
                         <th scope="col">Title</th>
+                        <th scope="col">Game</th>
                         <th scope="col">Author</th>
                         <th scope="col">Create Time</th>
                     </tr>
                 </thead>
                 <tbody className="table-striped">
-                {data.map(({f_id,title,create_date,userID,content,create_time}) => (
+                {data.map(({f_id,title,create_date,userID,content,create_time,gameID}) => (
                         <tr key={f_id}>
                             <td>
                                 <Link href={`/forum/${encodeURIComponent(f_id)}`}>
                                     <a className="text-muted">{title}</a>
+                                </Link>
+                            </td>
+                            <td>
+                                <Link href={`/game/${encodeURIComponent(gameID)}`}>
+                                    <a className="text-muted">
+                                        <Game g_id={gameID}></Game>
+                                    </a>
                                 </Link>
                             </td>
                             {/*<td>{create_date}</td>*/}

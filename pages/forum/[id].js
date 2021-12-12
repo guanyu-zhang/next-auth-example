@@ -75,5 +75,4 @@ export default function Forum() {
             </Layout>
         )
     }
-
 }
