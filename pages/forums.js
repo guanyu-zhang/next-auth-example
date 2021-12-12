@@ -26,6 +26,12 @@ function App () {
         )
 }
 
+function User ({id}) {
+    const { data, error } = useSWR(`/api/user/${id}`, fetcher);
+    if (error) return id
+    if (!data) return "Loading..."
+    return data[0].nameLast + " " + data[0].nameFirst
+}
 
 function Page ({ offset }) {
     const { data, error } = useSWR(`/api/forums?offset=${offset}`, fetcher);
@@ -56,7 +62,8 @@ function Page ({ offset }) {
                                 </Link>
                             </td>
                             {/*<td>{create_date}</td>*/}
-                            <td>{userID}</td>
+                            {/*<td>{userID}</td>*/}
+                            <td><User id={userID}></User></td>
                             {/*<td>{content}</td>*/}
                             <td>{create_time}</td>
                         </tr>
